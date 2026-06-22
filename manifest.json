@@ -1,0 +1,29 @@
+{
+  "devtools_port": 9091,
+  "runtime": {
+    "version": "44.146.101.4"
+  },
+  "platform": {
+    "uuid": "drag-repro",
+    "autoShow": true,
+    "providerUrl": "http://localhost:5555/provider.html",
+    "defaultWindowOptions": {
+      "url": "http://localhost:5555/window.html",
+      "closeOnLastViewRemoved": false,
+      "defaultWidth": 800,
+      "defaultHeight": 600,
+      "frame": false,
+      "viewVisibility": {
+        "showViewsOnTabDrag": {
+          "enabled": true
+        },
+        "showViewsOnSplitterDrag": {
+          "enabled": true
+        },
+        "showViewsOnWindowResize": {
+          "enabled": true
+        }
+      }
+    }
+  }
+}
