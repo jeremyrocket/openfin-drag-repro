@@ -5,8 +5,6 @@
 </head>
 <body>
   <h2>Platform Provider</h2>
-  <button id="create-window">Create Window with View (layout-embedded)</button>
-  <button id="create-window-2">Create Second Window</button>
   <div id="log" style="font-family: monospace; font-size: 12px; white-space: pre-wrap; margin-top: 20px;"></div>
 
   <script>
@@ -19,8 +17,8 @@
       await fin.Platform.init({});
       log('Platform initialized');
 
-      // Create the first window with a view embedded in layout
       const platform = await fin.Platform.getCurrent();
+
       const win1 = await platform.createWindow({
         defaultWidth: 800,
         defaultHeight: 600,
@@ -40,50 +38,30 @@
           }]
         }
       });
-      log('Window 1 created: ' + win1.identity.name);
+      log('Window 1 created (example.com): ' + win1.identity.name);
 
-      // Button: create second window with view in layout
-      document.getElementById('create-window').addEventListener('click', async () => {
-        const win = await platform.createWindow({
-          defaultWidth: 800,
-          defaultHeight: 600,
-          layout: {
+      const win2 = await platform.createWindow({
+        defaultWidth: 800,
+        defaultHeight: 600,
+        layout: {
+          content: [{
+            type: 'row',
             content: [{
-              type: 'row',
+              type: 'stack',
               content: [{
-                type: 'stack',
-                content: [{
-                  type: 'component',
-                  componentName: 'view',
-                  componentState: {
-                    url: 'https://www.google.com'
-                  }
-                }]
+                type: 'component',
+                componentName: 'view',
+                componentState: {
+                  url: 'https://www.google.com'
+                }
               }]
             }]
-          }
-        });
-        log('New window created (layout-embedded view): ' + win.identity.name);
+          }]
+        }
       });
+      log('Window 2 created (google.com): ' + win2.identity.name);
 
-      // Button: create window then add view via createView
-      document.getElementById('create-window-2').addEventListener('click', async () => {
-        const win = await platform.createWindow({
-          defaultWidth: 800,
-          defaultHeight: 600,
-          layout: {
-            content: [{
-              type: 'row',
-              content: []
-            }]
-          }
-        });
-        await platform.createView({
-          url: 'https://www.google.com',
-          target: win.identity
-        }, win.identity);
-        log('New window created (createView): ' + win.identity.name);
-      });
+      log('Ready — drag the google.com tab onto a split zone of Window 1');
     }
 
     init().catch(e => log('ERROR: ' + e.message));
