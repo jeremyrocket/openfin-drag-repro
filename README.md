@@ -29,10 +29,12 @@ The **only** difference between them is the value of
    ```
    openfin --launch --config http://localhost:5555/manifest-broken.json
    ```
-3. Two windows open automatically — Window 1 (example.com) and Window 2 (google.com)
-4. Drag the google.com tab from Window 2 to the **left/right/top/bottom split zone** of Window 1's view
-5. **Expected:** View splits into two panes
-6. **Actual:** Drop fails, view ends up in a separate window
+3. Window 1 opens with example.com
+4. In the platform provider window, click "Create Window with View (layout-embedded)"
+5. Window 2 opens with google.com
+6. Drag the google.com tab from Window 2 to the **left/right/top/bottom split zone** of Window 1's view
+7. **Expected:** View splits into two panes
+8. **Actual:** Drop fails, view ends up in a separate window
 
 ## To verify the fix
 
