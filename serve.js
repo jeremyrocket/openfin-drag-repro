@@ -27,7 +27,10 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, () => {
   console.log(`Serving at http://localhost:${PORT}`);
-  console.log(`Manifest at http://localhost:${PORT}/manifest.json`);
   console.log('');
-  console.log('To launch: openfin --launch --config http://localhost:5555/manifest.json');
+  console.log('Broken (showViewsOnTabDrag: true — split-drop fails on first attempt):');
+  console.log(`  openfin --launch --config http://localhost:${PORT}/manifest-broken.json`);
+  console.log('');
+  console.log('Working (showViewsOnTabDrag: false — split-drop works):');
+  console.log(`  openfin --launch --config http://localhost:${PORT}/manifest-working.json`);
 });
